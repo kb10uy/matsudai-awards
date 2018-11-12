@@ -1,7 +1,7 @@
 const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const AutoPrefixer = require('autoprefixer');
 
 const publicDirectory = path.resolve(__dirname, 'dist');
@@ -29,7 +29,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
+              importLoaders: 2,
+              url: false,
             },
           },
           {
@@ -47,13 +48,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    /*
     new CopyWebpackPlugin([
       {
-        from: './assets/static',
-        to: publicDirectory,
+        from: './assets/images',
+        to: path.resolve(publicDirectory, 'images'),
       },
     ]),
-    */
   ],
 };
